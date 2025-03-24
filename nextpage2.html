@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flip the Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Background Video */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .book-container {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            perspective: 1000px;
+        }
+
+        .flip-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+        }
+
+        .flipped {
+            transform: rotateY(-180deg);
+        }
+
+        .book {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            cursor: pointer;
+            transform-origin: right;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+        }
+
+        .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            cursor: pointer;
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Background Video -->
+    <video class="video-background" autoplay loop muted>
+        <source src="charm.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="book-container" onclick="flipPage()">
+        <div class="flip-container" id="flip">
+            <div class="book front">
+                You are charming ✨
+            </div>
+            <div class="book back">
+                All the best 🎉
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function flipPage() {
+            document.getElementById("flip").classList.toggle("flipped");
+        }
+    </script>
+
+</body>
+</html>

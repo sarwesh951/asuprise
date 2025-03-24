@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slice the Cake</title>
+    <style>
+        body {
+            background-color: black;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+        .cake-container {
+            position: relative;
+            display: inline-block;
+            margin-top: 50px;
+        }
+        .cake {
+            width: 300px;
+            transition: transform 0.5s ease-in-out;
+        }
+        .message {
+            font-size: 32px;
+            font-weight: bold;
+            color: gold;
+            text-shadow: 2px 2px 10px rgba(255, 215, 0, 0.8);
+            margin-top: 20px;
+        }
+        .slice {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0;
+            transition: all 0.5s ease-in-out;
+        }
+        .snow {
+            position: fixed;
+            top: -10px;
+            background: white;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: snowfall linear infinite;
+        }
+        @keyframes snowfall {
+            from {
+                transform: translateY(0vh);
+            }
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        .next-button {
+            display: none;
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 20px;
+            color: white;
+            background: linear-gradient(45deg, gold, orange);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.8);
+            transition: transform 0.3s ease-in-out;
+        }
+        .next-button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="cake-container">
+        <img src="cake-whole.png" class="cake" id="cake" alt="Birthday Cake">
+        <div class="message" id="message">🎂 Slice the Cake 🎂</div>
+    </div>
+    <button id="nextButton" class="next-button" onclick="window.location.href='nextpage2.html'">➡ Next Page 🎊</button>
+
+    <script>
+        function createSnow() {
+            const snow = document.createElement("div");
+            snow.classList.add("snow");
+            snow.style.left = Math.random() * 100 + "vw";
+            snow.style.animationDuration = Math.random() * 3 + 2 + "s";
+            document.body.appendChild(snow);
+            setTimeout(() => { snow.remove(); }, 5000);
+        }
+        setInterval(createSnow, 200);
+
+        document.getElementById("cake").addEventListener("click", function() {
+            this.src = "cake-sliced.png";
+            document.getElementById("message").textContent = "🎉 Enjoy the Cake! 🎉";
+            document.getElementById("nextButton").style.display = "block";
+        });
+    </script>
+</body>
+</html>
